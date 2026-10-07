@@ -14,12 +14,12 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build checker image
-        run: docker build -t ip-check .
+        run: docker build -t ipcheck .
 
       - name: Check the address plan
         id: check
         shell: bash
-        run: docker run --rm ip-check | tee report.txt
+        run: docker run --rm ipcheck | tee report.txt
 
       - name: Open an issue with the report
         if: failure() && steps.check.outcome == 'failure'
